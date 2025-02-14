@@ -80,6 +80,16 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
         }
+        main p {
+            font-size: 1.5em;
+            background: linear-gradient(to right, #006600, #ffffff, #ff0000);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s infinite;
+            text-align: center;
+            margin-bottom: 30px;
+        }
         .button-container {
             margin: 30px 0;
             display: flex;
@@ -146,9 +156,46 @@
             z-index: 1000; /* Ensure it's above other content */
             transition: top 0.3s; /* Add a slight delay for smooth transition */
         }
+        .welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5em;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            z-index: 3000; /* Ensure it's above the curtain */
+        }
+        .welcome-message.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 1s ease-in-out;
+        }
+        .curtain.open {
+            transform: translateY(-100%);
+        }
     </style>
 </head>
 <body>
+
+    <div class="curtain" id="curtain"></div>
+    <div class="welcome-message" id="welcomeMessage">Welcome to PharmaSmart KE!</div>
 
     <!-- Hamburger Icon to toggle sidebar -->
     <button class="sidebar-toggle-btn" onclick="toggleSidebar()">
@@ -169,7 +216,7 @@
     </header>
 
     <main>
-        <p>Your trusted hub for pharmacy practice in Kenya. Whether you're a student looking for accredited courses, a practitioner seeking trusted learning materials, or an individual eager to learn about healthy living through courses on family planning, nutrition, and more—we’ve got you covered! Gain access to high-quality education, certification, CV and cover letter templates, and seamless healthcare services—all in one place. Sign up today and take the next step in your pharmacy journey!</p>
+        <p>Welcome to PharmaSmart KE! Your trusted hub for pharmacy practice in Kenya. Whether you're a student looking for accredited courses, a practitioner seeking trusted learning materials, or an individual eager to learn about healthy living through courses on family planning, nutrition, and more—we’ve got you covered! Gain access to high-quality education, certification, CV and cover letter templates, and seamless healthcare services—all in one place. Sign up today and take the next step in your pharmacy journey!</p>
         
         <div class="button-container">
             <a href="pharm.html">BPharm and Dpharm accredited institutions</a>
@@ -189,6 +236,18 @@
     </footer>
 
     <script>
+        window.onload = function() {
+            const welcomeMessage = document.getElementById('welcomeMessage');
+            const curtain = document.getElementById('curtain');
+            setTimeout(() => {
+                welcomeMessage.classList.add('show');
+                setTimeout(() => {
+                    welcomeMessage.classList.remove('show');
+                    curtain.classList.add('open');
+                }, 3000); // Hide welcome message after 3 seconds
+            }, 1000); // Delay of 1 second before showing the welcome message
+        };
+
         function toggleSidebar() {
             const sidebar = document.querySelector('.sidebar');
             if (sidebar.style.display === 'none' || sidebar.style.display === '') {
