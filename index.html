@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/jpeg" href="logo.jpg">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kenyan Pharmacy Blog</title>
+    <title>PharmaSmart KE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Times New Roman', serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-image: url('drug.jpg');
@@ -18,26 +18,35 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            transition: background-color 0.3s;
         }
         header {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
             text-align: center;
             flex-shrink: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         header h1 {
             margin: 0;
             font-size: 2.5em;
             background: linear-gradient(to right, #006600, #ffffff, #ff0000);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: gradient 3s infinite;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .sidebar {
             position: fixed;
-            top: 0;
+            top: 60px; /* Lower the sidebar slightly */
             left: 0;
             width: 250px;
-            height: 100%;
+            height: calc(100% - 60px); /* Adjust height to account for the new top position */
             background-color: rgba(0, 0, 0, 0.8);
             padding-top: 20px;
             color: #fff;
@@ -45,6 +54,7 @@
             display: flex;
             flex-direction: column;
             display: none; /* Initially hidden */
+            transition: transform 0.3s ease-in-out;
         }
         .sidebar a {
             color: #00bcd4;
@@ -52,10 +62,11 @@
             font-size: 1.2em;
             padding: 15px;
             border-bottom: 1px solid #444;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .sidebar a:hover {
             background-color: #008c9e;
+            transform: translateX(10px);
         }
         main {
             margin-left: 260px;
@@ -66,6 +77,8 @@
             max-width: 800px;
             border-radius: 15px;
             flex-grow: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
         }
         .button-container {
             margin: 30px 0;
@@ -82,10 +95,11 @@
             text-decoration: none;
             font-size: 1.2em;
             border-radius: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
         }
         .button-container a:hover {
             background-color: #008c9e;
+            transform: translateY(-5px);
         }
         .auth-buttons {
             margin-top: 30px;
@@ -101,17 +115,19 @@
             color: #fff;
             text-decoration: none;
             border-radius: 10px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.3s;
             font-size: 1em;
         }
         .auth-buttons a:hover {
             background-color: #008c9e;
+            transform: translateY(-5px);
         }
         footer {
             background-color: rgba(0, 0, 0, 0.7);
             padding: 10px 0;
             text-align: center;
             flex-shrink: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
         }
         footer p {
             margin: 0;
@@ -128,6 +144,7 @@
             font-size: 2em;
             cursor: pointer;
             z-index: 1000; /* Ensure it's above other content */
+            transition: top 0.3s; /* Add a slight delay for smooth transition */
         }
     </style>
 </head>
@@ -139,7 +156,7 @@
     </button>
 
     <div class="sidebar">
-        <a href="contacts.html">Contacts</a>
+    
         <a href="signup.html">Sign Up</a>
         <a href="login.html">Login</a>
         <a href="support.html">Support</a>
