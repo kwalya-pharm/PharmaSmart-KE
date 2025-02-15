@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #008080; /* Teal */
+            --secondary-color: #ffffff; /* White */
+            --background-color: #f0f0f0; /* Light background */
+            --text-color: #ffffff; /* White text */
+            --dark-background-color: #121212; /* Dark background */
+            --dark-text-color: #ffffff; /* White text */
+        }
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -14,32 +22,20 @@
             background-image: url('drug.jpg');
             background-size: cover;
             background-repeat: no-repeat;
-            color: #fff;
+            background-color: var(--dark-background-color);
+            color: var(--dark-text-color); /* White text */
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
         header {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
             padding: 20px;
             text-align: center;
             flex-shrink: 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            background: linear-gradient(to right, #006600, #ffffff, #ff0000);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 3s infinite;
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            color: var(--secondary-color); /* White text */
         }
         .sidebar {
             position: fixed;
@@ -47,9 +43,9 @@
             left: 0;
             width: 250px;
             height: calc(100% - 60px); /* Adjust height to account for the new top position */
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
             padding-top: 20px;
-            color: #fff;
+            color: var(--secondary-color);
             text-align: left;
             display: flex;
             flex-direction: column;
@@ -57,7 +53,7 @@
             transition: transform 0.3s ease-in-out;
         }
         .sidebar a {
-            color: #00bcd4;
+            color: var(--secondary-color);
             text-decoration: none;
             font-size: 1.2em;
             padding: 15px;
@@ -65,13 +61,13 @@
             transition: background-color 0.3s, transform 0.3s;
         }
         .sidebar a:hover {
-            background-color: #008c9e;
+            background-color: #006666;
             transform: translateX(10px);
         }
         main {
             margin-left: 260px;
             padding: 50px 20px;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent dark */
             margin: 20px auto;
             width: 90%;
             max-width: 800px;
@@ -79,14 +75,11 @@
             flex-grow: 1;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
+            color: var(--secondary-color); /* White text */
         }
         main p {
             font-size: 1.5em;
-            background: linear-gradient(to right, #006600, #ffffff, #ff0000);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient 3s infinite;
+            color: var(--secondary-color); /* White text */
             text-align: center;
             margin-bottom: 30px;
         }
@@ -100,15 +93,15 @@
             display: inline-block;
             margin: 10px;
             padding: 15px 30px;
-            background-color: #00bcd4;
-            color: #fff;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             text-decoration: none;
             font-size: 1.2em;
             border-radius: 10px;
             transition: background-color 0.3s, transform 0.3s;
         }
         .button-container a:hover {
-            background-color: #008c9e;
+            background-color: #006666;
             transform: translateY(-5px);
         }
         .auth-buttons {
@@ -121,27 +114,29 @@
             display: inline-block;
             margin: 10px;
             padding: 10px 20px;
-            background-color: #00bcd4;
-            color: #fff;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
             text-decoration: none;
             border-radius: 10px;
             transition: background-color 0.3s, transform 0.3s;
             font-size: 1em;
         }
         .auth-buttons a:hover {
-            background-color: #008c9e;
+            background-color: #006666;
             transform: translateY(-5px);
         }
         footer {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
             padding: 10px 0;
             text-align: center;
             flex-shrink: 0;
             box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            color: var(--secondary-color); /* White text */
         }
         footer p {
             margin: 0;
             font-size: 0.9em;
+            color: var(--secondary-color);
         }
         /* Icon button to toggle the sidebar */
         .sidebar-toggle-btn {
@@ -150,7 +145,7 @@
             left: 20px;
             background-color: transparent;
             border: none;
-            color: #fff;
+            color: var(--secondary-color); /* Change to white */
             font-size: 2em;
             cursor: pointer;
             z-index: 1000; /* Ensure it's above other content */
@@ -161,11 +156,12 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             font-size: 1.5em;
+            color: var(--secondary-color);
             opacity: 0;
             transition: opacity 1s ease-in-out, transform 1s ease-in-out;
             z-index: 3000; /* Ensure it's above the curtain */
@@ -203,7 +199,6 @@
     </button>
 
     <div class="sidebar">
-    
         <a href="signup.html">Sign Up</a>
         <a href="login.html">Login</a>
         <a href="support.html">Support</a>
