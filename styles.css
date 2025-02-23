@@ -1,0 +1,373 @@
+:root {
+    --primary-color: #008080;
+    --secondary-color: #ffffff;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --accent-color: #005f5f;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-size: 1.8rem;
+}
+
+/* Intro Section */
+.intro-section {
+    text-align: center;
+    background: linear-gradient(135deg, #009688, #004d40);
+    color: var(--secondary-color);
+    padding: 40px 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 800px;
+    margin: 30px 0;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.intro-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.intro-section p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.intro-section h3 {
+    margin-top: 15px;
+    font-size: 1.5rem;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+    margin-top: 20px;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 25px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cta-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+    transform: translateY(-4px);
+}
+
+/* Main Content */
+main {
+    width: 90%;
+    max-width: 800px;
+    background: var(--secondary-color);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Links Section */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button-container a {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.button-container a:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* Sidebar Toggle Button */
+.sidebar-toggle-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 12px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.sidebar-toggle-btn:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+/* Sidebar Menu */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -270px; /* Hidden initially */
+    width: 270px;
+    height: 100%;
+    background: linear-gradient(135deg, #009688, #004d40); /* Modern gradient */
+    color: var(--secondary-color);
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.4s ease-in-out;
+    padding-top: 60px;
+    z-index: 999;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    overflow: hidden;
+}
+
+/* Sidebar Active */
+.sidebar.active {
+    left: 0;
+}
+
+/* Sidebar Links */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: background 0.3s, padding-left 0.3s;
+    font-weight: bold;
+}
+
+.sidebar a i {
+    margin-right: 15px;
+    font-size: 1.4rem;
+}
+
+.sidebar a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    padding-left: 35px; /* Slide effect on hover */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar Close Button */
+.sidebar .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.sidebar .close-btn:hover {
+    color: #ffeb3b;
+}
+/* Auth Buttons (Login & Sign Up) */
+.auth-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.auth-buttons a {
+    display: block;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.auth-buttons a:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* When element is visible */
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Scroll-to-Top Button */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 10px 15px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.scroll-to-top:hover {
+    background: var(--accent-color);
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 8px 12px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode-toggle:hover {
+    background: var(--accent-color);
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #222;
+    color: #f5f5f5;
+}
+
+body.dark-mode header {
+    background-color: #333;
+}
+
+body.dark-mode .sidebar {
+    background: linear-gradient(135deg, #444, #222);
+}
+
+body.dark-mode .cta-btn {
+    background-color: #444;
+    color: #f5f5f5;
+}
+
+body.dark-mode .cta-btn:hover {
+    background-color: var(--accent-color);
+}
+/* Social Media Icons in Footer */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 10px;
+    padding: 10px;
+}
+
+/* Styling each icon */
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: white;  /* White background for visibility */
+    border-radius: 50%; /* Circular icons */
+    color: var(--primary-color); /* Match theme */
+    font-size: 1.5rem;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover Effect */
+.social-icons a:hover {
+    transform: scale(1.2);
+    background: var(--accent-color);
+    color: white;
+}
