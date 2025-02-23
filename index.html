@@ -6,252 +6,78 @@
     <title>PharmaSmart KE</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #008080; /* Teal */
-            --secondary-color: #ffffff; /* White */
-            --background-color: #f0f0f0; /* Light background */
-            --text-color: #ffffff; /* White text */
-            --dark-background-color: #121212; /* Dark background */
-            --dark-text-color: #ffffff; /* White text */
-        }
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-image: url('drug.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-color: var(--dark-background-color);
-            color: var(--dark-text-color); /* White text */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        header {
-            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
-            padding: 20px;
-            text-align: center;
-            flex-shrink: 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            color: var(--secondary-color); /* White text */
-        }
-        .sidebar {
-            position: fixed;
-            top: 60px; /* Lower the sidebar slightly */
-            left: 0;
-            width: 250px;
-            height: calc(100% - 60px); /* Adjust height to account for the new top position */
-            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
-            padding-top: 20px;
-            color: var(--secondary-color);
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            display: none; /* Initially hidden */
-            transition: transform 0.3s ease-in-out;
-        }
-        .sidebar a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 1.2em;
-            padding: 15px;
-            border-bottom: 1px solid #444;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .sidebar a:hover {
-            background-color: #006666;
-            transform: translateX(10px);
-        }
-        main {
-            margin-left: 260px;
-            padding: 50px 20px;
-            background-color: rgba(255, 255, 255, 0.1); /* Slightly transparent dark */
-            margin: 20px auto;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 15px;
-            flex-grow: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s;
-            color: var(--secondary-color); /* White text */
-        }
-        main p {
-            font-size: 1.5em;
-            color: var(--secondary-color); /* White text */
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .button-container {
-            margin: 30px 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the buttons horizontally */
-        }
-        .button-container a {
-            display: inline-block;
-            margin: 10px;
-            padding: 15px 30px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 1.2em;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .button-container a:hover {
-            background-color: #006666;
-            transform: translateY(-5px);
-        }
-        .auth-buttons {
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the buttons horizontally */
-        }
-        .auth-buttons a {
-            display: inline-block;
-            margin: 10px;
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            text-decoration: none;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-size: 1em;
-        }
-        .auth-buttons a:hover {
-            background-color: #006666;
-            transform: translateY(-5px);
-        }
-        footer {
-            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
-            padding: 10px 0;
-            text-align: center;
-            flex-shrink: 0;
-            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
-            color: var(--secondary-color); /* White text */
-        }
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-            color: var(--secondary-color);
-        }
-        /* Icon button to toggle the sidebar */
-        .sidebar-toggle-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: transparent;
-            border: none;
-            color: var(--secondary-color); /* Change to white */
-            font-size: 2em;
-            cursor: pointer;
-            z-index: 1000; /* Ensure it's above other content */
-            transition: top 0.3s; /* Add a slight delay for smooth transition */
-        }
-        .welcome-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 128, 128, 0.9); /* Slightly transparent teal */
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-size: 1.5em;
-            color: var(--secondary-color);
-            opacity: 0;
-            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-            z-index: 3000; /* Ensure it's above the curtain */
-        }
-        .welcome-message.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-        .curtain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            z-index: 2000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 1s ease-in-out;
-        }
-        .curtain.open {
-            transform: translateY(-100%);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
 
-    <div class="curtain" id="curtain"></div>
-    <div class="welcome-message" id="welcomeMessage">Welcome to PharmaSmart KE!</div>
-
-    <!-- Hamburger Icon to toggle sidebar -->
-    <button class="sidebar-toggle-btn" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i> <!-- Font Awesome hamburger icon -->
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle-btn">
+        <i class="fas fa-bars"></i>
     </button>
 
+    <!-- Sidebar Menu -->
     <div class="sidebar">
-        <a href="signup.html">Sign Up</a>
-        <a href="login.html">Login</a>
-        <a href="support.html">Support</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
+        <button class="close-btn"><i class="fas fa-times"></i></button> <!-- Close Button -->
+        <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+        <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="support.html"><i class="fas fa-life-ring"></i> Support</a>
+        <a href="privacy-policy.html"><i class="fas fa-lock"></i> Privacy Policy</a>
     </div>
+
+    <!-- Welcome Curtain Animation -->
+    <div class="curtain" id="curtain"></div>
 
     <header>
         <img src="logo.jpg" alt="PharmaSmart KE Logo" style="max-width: 150px; height: auto;">
         <h1>Welcome to PharmaSmart KE</h1>
+
     </header>
 
     <main>
-        <p>Welcome to PharmaSmart KE! Your trusted hub for pharmacy practice in Kenya. Whether you're a student looking for accredited courses, a practitioner seeking trusted learning materials, or an individual eager to learn about healthy living through courses on family planning, nutrition, and more—we’ve got you covered! Gain access to high-quality education, certification, CV and cover letter templates, and seamless healthcare services—all in one place. Sign up today and take the next step in your pharmacy journey!</p>
-        
-        <div class="button-container">
-            <a href="pharm.html">BPharm and Dpharm accredited institutions</a>
-            <a href="tips-resources.html">Tips & Resources for BPharm Students</a>
-            <a href="specialities.html">Specialties Recognized by PPB</a>
-            <a href="updates.html">Updates on latest pharmaceutical research</a>
-        </div>
+       <section class="intro-section fade-in">
 
-        <div class="auth-buttons">
-            <a href="login.html">Login</a>
-            <a href="signup.html">Sign Up</a>
-        </div>
+<h2 id="typing-text"></h2>
+        <p>📚 CPD-Accredited Courses for Pharmacists & Healthcare Providers</p>
+        <p>📝 Professional CV & Cover Letter Services with Premium Templates</p>
+        <h3>Join PharmaSmart KE Today!</h3>
+    </section>
+
+    <div class="button-container fade-in">
+        <a href="pharm.html">BPharm and Dpharm Accredited Institutions</a>
+        <a href="tips-resources.html">Tips & Resources for BPharm Students</a>
+        <a href="specialities.html">Specialties Recognized by PPB</a>
+        <a href="updates.html">Updates on Latest Pharmaceutical innovations</a>
+    </div>
+
+    <div class="auth-buttons fade-in">
+        <a href="login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+    </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 PharmaSmart KE. All rights reserved.</p>
-    </footer>
+   <footer>
+    <p>Follow us on:</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/yourpage" target="_blank">
+            <i class="fab fa-facebook"></i>
+        </a>
+        <a href="https://www.instagram.com/yourpage" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/yourprofile" target="_blank">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="https://twitter.com/yourhandle" target="_blank">
+            <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://wa.me/254748052811" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+    <p>&copy; 2025 PharmaSmart KE. All rights reserved.</p>
+</footer>
 
-    <script>
-        window.onload = function() {
-            const welcomeMessage = document.getElementById('welcomeMessage');
-            const curtain = document.getElementById('curtain');
-            setTimeout(() => {
-                welcomeMessage.classList.add('show');
-                setTimeout(() => {
-                    welcomeMessage.classList.remove('show');
-                    curtain.classList.add('open');
-                }, 3000); // Hide welcome message after 3 seconds
-            }, 1000); // Delay of 1 second before showing the welcome message
-        };
-
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-                sidebar.style.display = 'flex';  // Show sidebar
-            } else {
-                sidebar.style.display = 'none';  // Hide sidebar
-            }
-        }
-    </script>
-
+    <script src="script.js"></script> <!-- Link to external JS -->
 </body>
 </html>
