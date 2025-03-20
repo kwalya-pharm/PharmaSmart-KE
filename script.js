@@ -86,5 +86,5 @@ function typeWriterEffect(element, text, speed = 100) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const typingText = document.getElementById("typing-text");
-    typeWriterEffect(typingText, "🎓 Upgrade Your Skills. Elevate Your Career. 🚀");
+    typeWriterEffect(typingText, "Upgrade Your Skills. Elevate Your Career.);
 });
