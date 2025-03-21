@@ -26,24 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // === Sidebar Toggle ===
-    toggleBtn.addEventListener("click", function () {
-        sidebar.classList.toggle("active");
+    toggleBtn?.addEventListener("click", function () {
+        sidebar?.classList.toggle("active");
     });
 
-    closeBtn.addEventListener("click", function () {
-        sidebar.classList.remove("active");
+    closeBtn?.addEventListener("click", function () {
+        sidebar?.classList.remove("active");
     });
 
     // Close sidebar when clicking outside
     document.addEventListener("click", function (event) {
-        if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+        if (sidebar && toggleBtn && !sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
             sidebar.classList.remove("active");
         }
     });
 
     // Close sidebar on Escape key press
     document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" && sidebar) {
             sidebar.classList.remove("active");
         }
     });
@@ -70,21 +70,23 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event Listeners
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Run once on page load
-});
-function typeWriterEffect(element, text, speed = 100) {
-    let index = 0;
-    function type() {
-        if (index < text.length) {
-            element.innerHTML += text.charAt(index);
-            index++;
-            setTimeout(type, speed);
-        }
-    }
-    element.innerHTML = "";
-    type();
-}
 
-document.addEventListener("DOMContentLoaded", function () {
+    // === Typewriter Effect ===
+    function typeWriterEffect(element, text, speed = 100) {
+        let index = 0;
+        function type() {
+            if (index < text.length) {
+                element.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            }
+        }
+        element.innerHTML = "";
+        type();
+    }
+
     const typingText = document.getElementById("typing-text");
-    typeWriterEffect(typingText, "Upgrade Your Skills. Elevate Your Career.);
+    if (typingText) {
+        typeWriterEffect(typingText, "Upgrade Your Skills. Elevate Your Career.");
+    }
 });
